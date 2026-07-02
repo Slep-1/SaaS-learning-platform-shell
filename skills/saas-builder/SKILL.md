@@ -34,7 +34,7 @@ Setup and verification commands are hard gates. Do not continue to mapping or im
 
 - Use the verified clone as the source of truth. Inspect current files before making claims or edits.
 - Keep changes minimal. Do not reformat unrelated files.
-- Preserve `src/components/DemoBadge.tsx` and its layout usage. Also preserve `src/app/[locale]/(auth)/dashboard/page.tsx`.
+- Do not change these: `src/components/DemoBadge.tsx`, its `DemoBadge` usage in `src/app/[locale]/layout.tsx`, or `src/app/[locale]/(auth)/dashboard/page.tsx`.
 - Use marketing routes only for promotional content.
 - Treat landing and marketing page adaptation as part of every SaaS implementation unless the user explicitly scopes it out.
 - Build product workflows as dedicated authenticated dashboard feature pages, not in the dashboard index: use `src/app/[locale]/(auth)/dashboard/<feature>/page.tsx` for CRUD, data entry, tools, and customer-specific views.
