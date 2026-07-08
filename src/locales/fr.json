@@ -1,7 +1,7 @@
 {
   "Index": {
-    "meta_title": "SaaS Template - Le template SaaS parfait pour construire et mettre à l'échelle votre entreprise en toute simplicité.",
-    "meta_description": "Un template gratuit et open-source de landing page pour votre entreprise SaaS, construit avec React, TypeScript, Shadcn UI et Tailwind CSS."
+    "meta_title": "myLearning - Formation d'équipe mobile-first et microlearning",
+    "meta_description": "myLearning propose des micro-formations en petites capsules que votre équipe peut suivre partout, sur n'importe quel appareil — pensé pour les équipes occupées et réparties sur le terrain."
   },
   "Navbar": {
     "sign_in": "Se connecter",
@@ -16,28 +16,26 @@
     "button_label": "Changer de langue"
   },
   "Hero": {
-    "follow_twitter": "Suivez @Ixartz sur Twitter",
-    "title": "Le parfait <important>SaaS template</important> pour construire et mettre à l'échelle votre entreprise en toute simplicité.",
-    "description": "Un template gratuit et open-source de landing page pour votre entreprise SaaS, construit avec React, TypeScript, Shadcn UI et Tailwind CSS.",
-    "primary_button": "Obtenir Next.js SaaS Starter Kit",
-    "secondary_button": "Mettez une étoile sur GitHub"
+    "title": "La <important>plateforme de microlearning</important> parfaite pour former et perfectionner votre équipe, partout.",
+    "description": "Proposez des formations mobile-first en petites capsules que votre équipe peut suivre en quelques minutes — sur le terrain, en déplacement ou entre deux réunions.",
+    "primary_button": "Commencer"
   },
   "Features": {
     "section_subtitle": "Fonctionnalités",
-    "section_title": "Débloquer le plein potentiel du SaaS Template",
-    "section_description": "Un template gratuit et open-source de landing page pour votre entreprise SaaS, construit avec React, TypeScript, Shadcn UI et Tailwind CSS.",
+    "section_title": "Tout ce qu'il faut pour former votre équipe en déplacement",
+    "section_description": "Leçons courtes, suivi de progression et diffusion mobile-first — tout ce dont votre équipe a besoin pour développer ses compétences sans quitter le terrain.",
     "feature1_title": "Node.js",
     "feature2_title": "React",
     "feature3_title": "Tailwind CSS",
     "feature4_title": "TypeScript",
     "feature5_title": "Shadcn UI",
     "feature6_title": "ESLint",
-    "feature_description": "Un template gratuit et open-source de landing page pour votre entreprise SaaS, construit avec React, TypeScript, Shadcn UI et Tailwind CSS."
+    "feature_description": "Leçons courtes, suivi de progression et diffusion mobile-first — tout ce dont votre équipe a besoin pour développer ses compétences sans quitter le terrain."
   },
   "Pricing": {
     "section_subtitle": "Tarifs",
-    "section_title": "Débloquer le plein potentiel du SaaS Template",
-    "section_description": "Un template gratuit et open-source de landing page pour votre entreprise SaaS, construit avec React, TypeScript, Shadcn UI et Tailwind CSS.",
+    "section_title": "Des forfaits simples qui évoluent avec votre équipe",
+    "section_description": "Choisissez le forfait adapté aux besoins de formation de votre équipe, du perfectionnement individuel au déploiement à l'échelle de l'entreprise.",
     "button_text": "Commencer"
   },
   "PricingPlans": {
@@ -60,23 +58,24 @@
     "feature_transfer": "{number} To de transfert",
     "feature_email_support": "Support par email"
   },
-  "SponsorLogos": {
-    "sponsored_by": "Sponsorisé par",
-    "clerk_logo": "Logo Clerk",
-    "sentry_logo": "Logo Sentry",
-    "crowdin_logo": "Logo Crowdin",
-    "arcjet_logo": "Logo Arcjet",
-    "coderabbit_logo": "Logo CodeRabbit",
-    "nextjs_boilerplate_logo": "Logo Next.js SaaS Boilerplate"
-  },
   "FAQ": {
-    "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam enim dui, id consequat turpis ullamcorper ac. Mauris id quam dolor. Nullam eu egestas turpis. Proin risus elit, sollicitudin in mi a, accumsan euismod turpis. In euismod mi sed diam tristique hendrerit."
+    "question1": "What is myLearning?",
+    "answer1": "A mobile-first training platform built for teams that don't sit at a desk all day. Instead of long courses, your team gets short, focused lessons — often just a few minutes — that fit between shifts, calls, or stops on the road.",
+    "question2": "Do employees need to download an app?",
+    "answer2": "No. Lessons open directly from a link — in a text message, an email, or wherever you share it. No app store, no install, no separate password to remember.",
+    "question3": "What does \"microlearning\" actually mean here?",
+    "answer3": "Instead of one long training session, content is broken into short, focused pieces — a single skill or scenario at a time. Learners get more of it done because each piece takes minutes, not hours.",
+    "question4": "How is this different from a traditional LMS?",
+    "answer4": "Most LMS platforms were built for desktop, for long courses, and for compliance checkboxes. myLearning is built mobile-first from the ground up, and tracks what someone actually did during a lesson — which choices they made, not just whether they clicked \"complete.\"",
+    "question5": "Can I see how my team is progressing?",
+    "answer5": "Yes. Admins get a dashboard showing who's completed what, team-wide progress, and — because we track real interactions, not just pass/fail — a clearer picture of where your team is actually strong or still learning.",
+    "question6": "How do I get my team started?",
+    "answer6": "Invite your team by email, they open their first lesson on their phone, and you're live — typically in minutes, not a multi-week rollout."
   },
   "CTA": {
-    "title": "Vous êtes prêt?",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "button_text": "Obtenir Next.js SaaS Starter Kit"
+    "title": "Prêt à faire monter votre équipe en compétence ?",
+    "description": "Déployez le microlearning mobile-first pour toute votre équipe en quelques minutes — sans LMS complexe.",
+    "button_text": "Commencer"
   },
   "Footer": {
     "product": "Produit",
@@ -97,19 +96,80 @@
     "meta_description": "Créez un compte sans effort grâce à notre processus d'inscription intuitif."
   },
   "DashboardLayout": {
-    "meta_title": "Tableau de bord du SaaS Template",
-    "meta_description": "Un template gratuit et open-source de landing page pour votre entreprise SaaS, construit avec Next.js, TypeScript, Shadcn UI et Tailwind CSS.",
+    "meta_title": "Tableau de bord myLearning",
+    "meta_description": "Gérez les cours, suivez les taux de complétion et accompagnez le parcours de microlearning de votre équipe depuis votre tableau de bord myLearning.",
     "home": "Accueil",
+    "library": "Library",
+    "assignments": "Assignments",
     "members": "Membres",
-    "settings": "Réglages"
+    "settings": "Réglages",
+    "viewing_as": "Viewing as {name}",
+    "exit_preview": "Exit preview",
+    "view_as_label": "View as learner…",
+    "view_as_button": "Preview"
   },
   "DashboardIndexPage": {
     "title_bar": "Tableau de bord",
     "title_bar_description": "Bienvenue sur votre tableau de bord",
-    "message_state_title": "Commençons",
-    "message_state_description": "Personnalisez cette page en modifiant le fichier dans <code>dashboard/page.tsx</code>.",
-    "message_state_alternative": "Besoin de fonctionnalités avancées ? Next.js 16 & React 19, Multi-tenancy & Équipes, Rôles & Permissions, Shadcn UI,\nTypesafety de bout en bout avec oRPC, Paiement Stripe, Mode clair / sombre. Essayez <url></url>.",
-    "max_message": "Ou, besoin d'une stack d'auth auto-hébergée (Better Auth) ? Essayez <url></url>."
+    "message_state_title": "Welcome to myLearning",
+    "message_state_description": "Browse the Library to launch your first lesson.",
+    "library_button": "Go to Library"
+  },
+  "LibraryPage": {
+    "title_bar": "Library",
+    "title_bar_description": "Browse lessons and launch one to get started.",
+    "manage_library": "Manage Library"
+  },
+  "LessonViewerPage": {
+    "back_to_library": "Back to Library"
+  },
+  "LibraryAdminPage": {
+    "title_bar": "Manage Library",
+    "title_bar_description": "Add and edit lessons for your organization.",
+    "add_lesson": "Add Lesson",
+    "manage_assignments": "Manage Assignments",
+    "edit": "Edit",
+    "delete": "Delete",
+    "delete_confirm": "Delete this lesson? This can't be undone."
+  },
+  "LessonFormPage": {
+    "new_title_bar": "Add Lesson",
+    "new_title_bar_description": "Upload an HTML file to create a new lesson.",
+    "edit_title_bar": "Edit Lesson",
+    "edit_title_bar_description": "Update the lesson's details, or replace its content.",
+    "field_title": "Title",
+    "field_description": "Description",
+    "field_html_file": "Lesson HTML file",
+    "field_html_file_hint": "Upload the .html file for this lesson.",
+    "field_html_file_hint_edit": "Leave empty to keep the current lesson content.",
+    "field_progress_hooks_summary": "Want progress tracking? Add these hooks to your lesson HTML",
+    "submit_new": "Create Lesson",
+    "submit_edit": "Save Changes"
+  },
+  "AssignmentsPage": {
+    "title_bar": "Assignments",
+    "title_bar_description": "Assign lessons to learners, set due dates, and track progress.",
+    "add_heading": "Assign a lesson",
+    "no_lessons_or_learners": "You need at least one lesson and one learner in your organization before you can create an assignment.",
+    "field_lesson": "Lesson",
+    "field_learners": "Learners",
+    "field_due_date": "Due date",
+    "submit_assign": "Assign",
+    "empty_state": "No assignments yet.",
+    "col_lesson": "Lesson",
+    "col_learner": "Learner",
+    "col_due_date": "Due date",
+    "col_status": "Status",
+    "col_actions": "Actions",
+    "save": "Save",
+    "status_green": "Completed",
+    "status_yellow": "On track",
+    "status_red": "Overdue",
+    "progress_not_started": "Not started",
+    "progress_in_progress": "In progress",
+    "progress_finished": "Finished",
+    "unassign": "Unassign",
+    "unassign_confirm": "Remove this assignment? This can't be undone."
   },
   "UserProfilePage": {
     "title_bar": "Profil utilisateur",
@@ -117,6 +177,13 @@
   },
   "OrganizationProfilePage": {
     "title_bar": "Gestion de l’organisation",
-    "title_bar_description": "Gérer votre organisation"
+    "title_bar_description": "Gérer votre organisation",
+    "invite_heading": "Invite a member",
+    "invite_email_label": "Email address",
+    "invite_role_label": "Role",
+    "invite_role_admin": "Admin",
+    "invite_role_coordinator": "Coordinator",
+    "invite_role_learner": "Learner",
+    "invite_submit": "Send Invite"
   }
 }

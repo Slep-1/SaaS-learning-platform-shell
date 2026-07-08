@@ -16,6 +16,8 @@ export const DashboardHeader = (props: {
     href: string;
     label: string;
   }[];
+  viewAsPicker?: React.ReactNode;
+  isLearnerView: boolean;
 }) => {
   const locale = useLocale();
 
@@ -28,7 +30,7 @@ export const DashboardHeader = (props: {
 
         <SlashIcon />
 
-        <OrganizationMenu />
+        <OrganizationMenu isLearnerView={props.isLearnerView} />
 
         <nav className="
           ml-3
@@ -63,6 +65,10 @@ export const DashboardHeader = (props: {
           <li>
             <Separator orientation="vertical" className="h-4" />
           </li>
+
+          {props.viewAsPicker && (
+            <li>{props.viewAsPicker}</li>
+          )}
 
           <li>
             <UserButton

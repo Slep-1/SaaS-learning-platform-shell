@@ -5,7 +5,7 @@ test.describe('Visual testing', () => {
     test('should take screenshot of the homepage', async ({ page }, testInfo) => {
       await page.goto('/');
 
-      await expect(page.getByText('The perfect SaaS template to build')).toBeVisible();
+      await expect(page.getByText('The perfect microlearning platform to train')).toBeVisible();
 
       await takeSnapshot(page, testInfo);
     });
@@ -13,7 +13,7 @@ test.describe('Visual testing', () => {
     test('should take screenshot of the French homepage', async ({ page }, testInfo) => {
       await page.goto('/fr');
 
-      await expect(page.getByText('Le parfait SaaS template pour construire')).toBeVisible();
+      await expect(page.getByText('La plateforme de microlearning parfaite pour former')).toBeVisible();
 
       await takeSnapshot(page, testInfo);
     });

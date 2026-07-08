@@ -1,7 +1,9 @@
+import { ArrowRightIcon } from '@radix-ui/react-icons';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { buttonVariants } from '@/components/ui/buttonVariants';
 import { PageMessage } from '@/features/dashboard/PageMessage';
 import { TitleBar } from '@/features/dashboard/TitleBar';
-import { SponsorLogos } from '@/features/sponsors/SponsorLogos';
+import { Link } from '@/libs/I18nNavigation';
 
 export default async function DashboardIndexPage(props: {
   params: Promise<{ locale: string }>;
@@ -30,58 +32,20 @@ export default async function DashboardIndexPage(props: {
             strokeLinejoin="round"
           >
             <path d="M0 0h24v24H0z" stroke="none" />
-            <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3M12 12l8-4.5M12 12v9M12 12L4 7.5" />
+            <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+            <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+            <path d="M3 6l0 13" />
+            <path d="M12 6l0 13" />
+            <path d="M21 6l0 13" />
           </svg>
         )}
         title={t('message_state_title')}
-        description={t.rich('message_state_description', {
-          code: chunks => (
-            <code className="bg-secondary text-secondary-foreground">
-              {chunks}
-            </code>
-          ),
-        })}
+        description={t('message_state_description')}
         button={(
-          <>
-            <div className="
-              mt-2 text-sm font-light whitespace-pre-wrap text-muted-foreground
-            "
-            >
-              {t.rich('message_state_alternative', {
-                url: () => (
-                  <a
-                    className="
-                      text-blue-500
-                      hover:text-blue-600
-                    "
-                    href="https://nextjs-boilerplate.com/pro-saas-starter-kit"
-                  >
-                    Next.js Boilerplate SaaS
-                  </a>
-                ),
-              })}
-
-              <p>
-                {t.rich('max_message', {
-                  url: () => (
-                    <a
-                      className="
-                        text-blue-500
-                        hover:text-blue-600
-                      "
-                      href="https://nextjs-boilerplate.com/nextjs-multi-tenant-saas-boilerplate"
-                    >
-                      Next.js Boilerplate Max
-                    </a>
-                  ),
-                })}
-              </p>
-            </div>
-
-            <div className="mt-7">
-              <SponsorLogos />
-            </div>
-          </>
+          <Link href="/dashboard/library" className={buttonVariants({ size: 'lg' })}>
+            {t('library_button')}
+            <ArrowRightIcon className="ml-1 size-5" />
+          </Link>
         )}
       />
     </>

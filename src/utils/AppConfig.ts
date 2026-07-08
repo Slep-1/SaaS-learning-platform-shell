@@ -19,14 +19,14 @@ const locales = [
 // FIXME: Customize this configuration for your product
 /** Centralized application configuration */
 export const AppConfig = {
-  name: 'SaaS Template',
+  name: 'myLearning',
   i18n: {
     locales,
     defaultLocale: 'en',
     localePrefix,
   },
   email: {
-    support: 'contact@nextjs-boilerplate.com',
+    support: 'support@mylearning.app',
   },
 } as const;
 
