@@ -1,447 +1,456 @@
 'use client';
 
+import type {
+  FrameworkStage,
+  FrameworkStageId,
+} from './capabilityFrameworkData';
 import {
-  ArrowLeft,
   ArrowRight,
   BriefcaseBusiness,
   CheckCircle2,
-  ClipboardCheck,
-  Eye,
+  ChevronRight,
+  ClipboardList,
   Layers3,
-  Presentation,
+  Network,
+  Play,
   Search,
   ShieldCheck,
   Sparkles,
   Target,
+  Users,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/libs/I18nNavigation';
 import {
-  applicationFlow,
-  evidenceComparison,
+  blueprintLevels,
   frameworkStages,
-  selectedSkillAreas,
 } from './capabilityFrameworkData';
 
-const SCREEN_COUNT = 5;
+const stageIcons = {
+  'business-need': Target,
+  'operational-discovery': Search,
+  'capability-blueprint': Network,
+  'capability-experiences': Sparkles,
+  'evidence-stewardship': ShieldCheck,
+} satisfies Record<FrameworkStageId, typeof Target>;
 
-const screenLabels = [
-  'Building Workforce Capability',
-  'Capability Development Framework',
-  'Applying the Framework',
-  'Why Evidence Matters',
-  'Transition to Walkthrough',
-];
+const stageVisuals: Record<FrameworkStageId, string[]> = {
+  'business-need': ['Business priority', 'Performance gap', 'Success measure'],
+  'operational-discovery': ['Observe work', 'Interview experts', 'Map decisions'],
+  'capability-blueprint': ['Job outcome', 'Capability structure', 'Evidence'],
+  'capability-experiences': ['Learn', 'Practice', 'Feedback'],
+  'evidence-stewardship': ['Capture', 'Verify', 'Improve'],
+};
 
-const StageHeader = (props: {
-  eyebrow: string;
-  title: string;
-  description?: string;
-}) => (
-  <header className="max-w-5xl">
-    <div className="text-sm font-semibold text-primary uppercase">{props.eyebrow}</div>
-    <h1 className="
-      mt-4 max-w-5xl text-5xl/13 font-semibold
-      sm:text-6xl/16
-      lg:text-7xl/18
-    "
-    >
-      {props.title}
-    </h1>
-    {props.description && (
-      <p className="
-        mt-6 max-w-4xl text-xl/8 text-muted-foreground
-        sm:text-2xl/9
-      "
-      >
-        {props.description}
-      </p>
-    )}
-  </header>
-);
+const DetailList = (props: {
+  icon: typeof Users;
+  label: string;
+  items: string[];
+}) => {
+  const Icon = props.icon;
 
-const ScreenOne = () => (
-  <div className="
-    grid h-full content-center gap-14
-    lg:grid-cols-[1.35fr_0.65fr] lg:items-center
-  "
-  >
-    <StageHeader
-      eyebrow="Discovery & Industry Analysis"
-      title="Building Workforce Capability"
-      description="From Job Analysis to Workforce Readiness"
-    />
-    <div className="border-l-4 border-primary py-3 pl-8">
-      <BriefcaseBusiness className="size-10 text-primary" />
+  return (
+    <section>
       <div className="
-        mt-8 text-sm font-semibold text-muted-foreground uppercase
+        flex items-center gap-2 text-xs font-semibold text-muted-foreground
+        uppercase
       "
       >
-        Interview assignment
+        <Icon className="size-4 text-primary" />
+        {props.label}
       </div>
-      <div className="mt-3 text-3xl/9 font-semibold">Cleanroom Operations Technician</div>
-      <p className="mt-5 text-base/7 text-muted-foreground">
-        Curriculum discovery, capability design, and evidence requirements.
-      </p>
-    </div>
-  </div>
-);
+      <ul className="mt-2 space-y-1">
+        {props.items.map(item => (
+          <li key={item} className="flex gap-2 text-xs/4 font-medium">
+            <span className="mt-2 size-1 shrink-0 bg-primary" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+};
 
-const ScreenTwo = () => (
-  <div className="grid h-full content-center">
-    <StageHeader
-      eyebrow="The methodology"
-      title="Capability Development Framework"
-      description="A practical path from job requirements to supervisor-usable evidence."
-    />
-    <div className="
-      mt-12 grid border-y border-border
-      lg:grid-cols-5
-    "
-    >
-      {frameworkStages.map((stage, index) => (
-        <div
-          key={stage.number}
-          className="
-            relative min-h-30 border-b border-border px-5 py-6
-            last:border-b-0
-            lg:min-h-52 lg:border-r lg:border-b-0
-            lg:last:border-r-0
+const StageVisual = ({ stage }: { stage: FrameworkStage }) => (
+  <div className="mt-auto border-t border-border pt-4">
+    <div className="text-xs font-semibold text-muted-foreground uppercase">
+      {stage.visualLabel}
+    </div>
+    <div className="mt-3 flex items-center gap-2">
+      {stageVisuals[stage.id].map((item, index) => (
+        <div key={item} className="contents">
+          <div className="
+            flex min-h-12 flex-1 items-center justify-center border
+            border-border bg-background px-2 text-center text-xs/4 font-semibold
           "
-        >
-          <div className="font-mono text-xs text-primary">{stage.number}</div>
-          <h2 className="mt-5 text-lg/6 font-semibold">{stage.title}</h2>
-          <p className="mt-4 text-sm/6 text-muted-foreground">{stage.description}</p>
-          {index < frameworkStages.length - 1 && (
-            <ArrowRight className="
-              absolute right-3 bottom-3 size-4 text-muted-foreground
-              max-lg:rotate-90
-              lg:top-6 lg:-right-2.5 lg:bottom-auto lg:z-10 lg:bg-muted
-            "
-            />
+          >
+            {item}
+          </div>
+          {index < stageVisuals[stage.id].length - 1 && (
+            <ArrowRight className="size-4 shrink-0 text-primary" />
           )}
         </div>
       ))}
     </div>
+    <p className="mt-2 text-xs text-muted-foreground">{stage.visualDetail}</p>
   </div>
 );
-
-const ScreenThree = () => (
-  <div className="grid h-full content-center">
-    <StageHeader
-      eyebrow="The interview assignment"
-      title="Applying the Framework"
-      description="The job description stays the source. Curriculum and evidence trace back to the work."
-    />
-    <div className="
-      mt-10 grid border-y border-border
-      lg:grid-cols-5
-    "
-    >
-      {applicationFlow.map((step, index) => (
-        <div
-          key={step.label}
-          className="
-            relative min-h-24 border-b border-border p-5
-            last:border-b-0
-            lg:min-h-36 lg:border-r lg:border-b-0
-            lg:last:border-r-0
-          "
-        >
-          <div className="text-xs font-semibold text-primary">{step.label}</div>
-          <div className="mt-4 text-sm/6 font-medium">{step.detail}</div>
-          {index < applicationFlow.length - 1 && (
-            <ArrowRight className="
-              absolute right-3 bottom-3 size-4 text-muted-foreground
-              max-lg:rotate-90
-              lg:top-5 lg:-right-2.5 lg:bottom-auto lg:z-10 lg:bg-background
-            "
-            />
-          )}
-        </div>
-      ))}
-    </div>
-    <div className="
-      mt-8 grid gap-4
-      md:grid-cols-3
-    "
-    >
-      {selectedSkillAreas.map((skill, index) => (
-        <div
-          key={skill}
-          className="
-            flex min-h-24 items-center gap-5 border-l-4 border-primary bg-card
-            px-5 py-4
-          "
-        >
-          <span className="font-mono text-xs text-primary">{String(index + 1).padStart(2, '0')}</span>
-          <span className="text-base/6 font-semibold">{skill}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-const ScreenFour = () => (
-  <div className="grid h-full content-center">
-    <StageHeader
-      eyebrow="The measurement distinction"
-      title="Training completion is not the same as job readiness."
-      description="Completion is one signal. Evidence gives supervisors a stronger basis for confidence."
-    />
-    <div className="
-      mt-10 grid gap-8
-      lg:grid-cols-2
-    "
-    >
-      <section className="border-t-4 border-muted-foreground bg-card p-7">
-        <div className="flex items-center gap-2">
-          <ClipboardCheck className="size-6 text-muted-foreground" />
-          <h2 className="text-xl font-semibold">Training completion shows</h2>
-        </div>
-        <div className="mt-7 space-y-4">
-          {evidenceComparison.map(row => (
-            <div
-              key={row.completion}
-              className="
-                flex min-h-12 items-center gap-3 text-base text-muted-foreground
-              "
-            >
-              <CheckCircle2 className="size-4 shrink-0" />
-              {row.completion}
-            </div>
-          ))}
-        </div>
-      </section>
-      <section className="border-t-4 border-primary bg-card p-7">
-        <div className="flex items-center gap-2">
-          <ShieldCheck className="size-6 text-primary" />
-          <h2 className="text-xl font-semibold">Capability evidence supports</h2>
-        </div>
-        <div className="mt-7 space-y-4">
-          {evidenceComparison.map(row => (
-            <div
-              key={row.evidence}
-              className="flex min-h-12 items-center gap-3 text-base font-medium"
-            >
-              <Eye className="size-4 shrink-0 text-primary" />
-              {row.evidence}
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
-    <div className="mt-8 flex items-center gap-4 border-l-4 border-primary pl-5">
-      <Target className="size-6 shrink-0 text-primary" />
-      <p className="text-xl font-semibold">Evidence supports supervisor confidence.</p>
-    </div>
-  </div>
-);
-
-const ScreenFive = () => (
-  <div className="
-    grid h-full content-center gap-14
-    lg:grid-cols-[1.25fr_0.75fr] lg:items-center
-  "
-  >
-    <div>
-      <div className="
-        flex size-14 items-center justify-center bg-primary
-        text-primary-foreground
-      "
-      >
-        <Presentation className="size-7" />
-      </div>
-      <h1 className="
-        mt-8 max-w-4xl text-5xl/13 font-semibold
-        sm:text-6xl/16
-        lg:text-7xl/18
-      "
-      >
-        Everything so far is methodology.
-      </h1>
-      <p className="
-        mt-6 max-w-3xl text-2xl/9 text-muted-foreground
-        sm:text-3xl/10
-      "
-      >
-        Now let&apos;s see how it becomes a learning solution.
-      </p>
-      <Button asChild size="lg" className="mt-10">
-        <Link href="/dashboard/showcase">
-          Begin Interactive Walkthrough
-          <ArrowRight className="size-4" />
-        </Link>
-      </Button>
-    </div>
-    <div className="border-l border-border py-3 pl-8">
-      <div className="text-sm font-semibold text-muted-foreground uppercase">Operationalizing the method</div>
-      <div className="mt-7 space-y-5">
-        {[
-          [Layers3, 'Capability Cards'],
-          [Sparkles, 'Decision Practice'],
-          [Search, 'Reviewable Evidence'],
-          [ShieldCheck, 'Supervisor verification'],
-        ].map(([Icon, label]) => {
-          const FeatureIcon = Icon as typeof Layers3;
-
-          return (
-            <div
-              key={label as string}
-              className="flex items-center gap-4 text-base font-semibold"
-            >
-              <FeatureIcon className="size-6 text-primary" />
-              {label as string}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </div>
-);
-
-const screens = [
-  <ScreenOne key="screen-one" />,
-  <ScreenTwo key="screen-two" />,
-  <ScreenThree key="screen-three" />,
-  <ScreenFour key="screen-four" />,
-  <ScreenFive key="screen-five" />,
-];
 
 export const CapabilityFramework = () => {
-  const [activeScreen, setActiveScreen] = useState(0);
+  const [activeStageId, setActiveStageId] = useState<FrameworkStageId>('capability-blueprint');
+  const [activeBlueprintId, setActiveBlueprintId] = useState(blueprintLevels[0]!.id);
 
-  const goBack = () => setActiveScreen(current => Math.max(0, current - 1));
-  const goNext = () => setActiveScreen(current => Math.min(SCREEN_COUNT - 1, current + 1));
+  const activeStageIndex = frameworkStages.findIndex(stage => stage.id === activeStageId);
+  const activeStage = frameworkStages[activeStageIndex]!;
+  const activeBlueprint = blueprintLevels.find(level => level.id === activeBlueprintId) ?? blueprintLevels[0]!;
+  const ActiveStageIcon = stageIcons[activeStage.id];
+
+  const selectRelativeStage = (offset: number) => {
+    const nextIndex = Math.min(
+      frameworkStages.length - 1,
+      Math.max(0, activeStageIndex + offset),
+    );
+    setActiveStageId(frameworkStages[nextIndex]!.id);
+  };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
-        goBack();
+        selectRelativeStage(-1);
       } else if (event.key === 'ArrowRight') {
-        goNext();
+        selectRelativeStage(1);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  });
 
   return (
     <div className="
-      flex min-h-[calc(100vh-144px)] flex-col overflow-hidden border
+      flex h-[calc(100vh-144px)] min-h-150 flex-col overflow-hidden border
       border-border bg-background
     "
     >
-      <div className="
-        flex flex-wrap items-center justify-between gap-3 border-b border-border
-        bg-card px-4 py-3
+      <header className="
+        flex shrink-0 items-center justify-between gap-6 border-b border-border
+        bg-card px-6 py-4
       "
       >
-        <div className="flex items-center gap-2">
-          <Badge variant="destructive">WIP</Badge>
-          <Badge variant="outline">Internal showcase</Badge>
-          <span className="
-            hidden text-xs text-muted-foreground
-            sm:inline
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <Badge variant="destructive">WIP</Badge>
+            <Badge variant="outline">Internal showcase</Badge>
+            <span className="
+              hidden text-xs font-semibold text-muted-foreground uppercase
+              md:inline
+            "
+            >
+              Interview framework
+            </span>
+          </div>
+          <h1 className="
+            mt-2 truncate text-2xl font-semibold
+            lg:text-3xl
           "
           >
-            Interview storyboard
-          </span>
+            Capability Development Framework
+          </h1>
         </div>
-        <div className="text-xs font-medium text-muted-foreground">
-          {activeScreen + 1}
-          {' '}
-          of
-          {SCREEN_COUNT}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-5 border-b border-border" aria-label="Storyboard progress">
-        {screenLabels.map((label, index) => (
-          <button
-            key={label}
-            type="button"
-            onClick={() => setActiveScreen(index)}
-            aria-label={`Go to screen ${index + 1}: ${label}`}
-            aria-current={index === activeScreen ? 'step' : undefined}
-            className={`
-              h-2 border-r border-background
-              last:border-r-0
-              ${index <= activeScreen ? 'bg-primary' : 'bg-muted'}
-            `}
-          />
-        ))}
-      </div>
-
-      <main
-        aria-live="polite"
-        className="
-          min-h-0 flex-1 overflow-y-auto px-6 py-8
-          sm:p-10
-          lg:px-16 lg:py-12
-        "
-      >
-        {screens[activeScreen]}
-      </main>
-
-      <footer className="
-        flex items-center justify-between gap-4 border-t border-border bg-card
-        px-4 py-3
-      "
-      >
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={goBack}
-          disabled={activeScreen === 0}
-          aria-label="Previous storyboard screen"
-        >
-          <ArrowLeft className="size-4" />
-          <span className="
-            hidden
-            sm:inline
-          "
-          >
-            Back
-          </span>
+        <Button asChild size="sm" className="shrink-0">
+          <Link href="/dashboard/showcase">
+            <span className="
+              hidden
+              sm:inline
+            "
+            >
+              Cleanroom Walkthrough
+            </span>
+            <Play className="size-4" />
+          </Link>
         </Button>
-        <div className="
-          hidden text-xs text-muted-foreground
-          sm:block
-        "
-        >
-          {screenLabels[activeScreen]}
-        </div>
-        {activeScreen < SCREEN_COUNT - 1
-          ? (
-              <Button
-                size="sm"
-                onClick={goNext}
-                aria-label="Next storyboard screen"
+      </header>
+
+      <nav
+        aria-label="Capability development stages"
+        className="grid shrink-0 grid-cols-5 border-b border-border bg-card"
+      >
+        {frameworkStages.map((stage) => {
+          const Icon = stageIcons[stage.id];
+          const isActive = stage.id === activeStageId;
+
+          return (
+            <button
+              key={stage.id}
+              type="button"
+              onClick={() => setActiveStageId(stage.id)}
+              aria-current={isActive ? 'step' : undefined}
+              className={`
+                group relative flex min-w-0 items-center gap-3 border-r
+                border-border px-3 py-4 text-left transition-colors
+                last:border-r-0
+                hover:bg-accent
+                lg:px-5
+                ${isActive ? 'bg-accent' : 'bg-card'}
+              `}
+            >
+              <span className={`
+                flex size-9 shrink-0 items-center justify-center border
+                ${isActive
+              ? 'border-primary bg-primary text-primary-foreground'
+              : 'border-border text-muted-foreground'}
+              `}
               >
+                <Icon className="size-4" />
+              </span>
+              <span className="min-w-0">
                 <span className="
-                  hidden
-                  sm:inline
+                  block font-mono text-[10px] text-muted-foreground
                 "
                 >
-                  Next
+                  {stage.number}
                 </span>
-                <ArrowRight className="size-4" />
-              </Button>
-            )
-          : (
-              <Button asChild size="sm">
-                <Link href="/dashboard/showcase">
-                  Begin Walkthrough
-                  <ArrowRight className="size-4" />
-                </Link>
-              </Button>
+                <span className="
+                  block truncate text-xs font-semibold
+                  md:text-sm
+                "
+                >
+                  <span className="md:hidden">{stage.shortLabel}</span>
+                  <span className="
+                    hidden
+                    md:inline
+                  "
+                  >
+                    {stage.title}
+                  </span>
+                </span>
+              </span>
+              {isActive && (
+                <span className="absolute inset-x-0 bottom-0 h-1 bg-primary" />
+              )}
+            </button>
+          );
+        })}
+      </nav>
+
+      <main className="
+        grid min-h-0 flex-1
+        lg:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.75fr)]
+      "
+      >
+        <section className="
+          flex min-h-0 flex-col overflow-hidden border-b border-border p-5
+          lg:border-r lg:border-b-0 lg:p-7
+        "
+        >
+          <div className="flex shrink-0 items-start justify-between gap-5">
+            <div>
+              <div className="text-xs font-semibold text-primary uppercase">
+                Stage
+                {' '}
+                {activeStage.number}
+              </div>
+              <h2 className="
+                mt-1 text-3xl/9 font-semibold
+                lg:text-4xl/11
+              "
+              >
+                {activeStage.title}
+              </h2>
+            </div>
+            {activeStage.id === 'capability-blueprint' && (
+              <Badge className="shrink-0">Centerpiece</Badge>
             )}
-      </footer>
+          </div>
+
+          {activeStage.id === 'capability-blueprint'
+            ? (
+                <div className="
+                  mt-5 grid min-h-0 flex-1 gap-3
+                  xl:grid-cols-[minmax(260px,0.9fr)_minmax(300px,1.1fr)]
+                "
+                >
+                  <div className="
+                    grid min-h-0 grid-cols-2 gap-2
+                    xl:grid-cols-1
+                  "
+                  >
+                    {blueprintLevels.map((level, index) => {
+                      const isActive = level.id === activeBlueprint.id;
+
+                      return (
+                        <button
+                          key={level.id}
+                          type="button"
+                          onClick={() => setActiveBlueprintId(level.id)}
+                          aria-pressed={isActive}
+                          className={`
+                            flex min-h-0 items-center gap-3 border px-3 py-2
+                            text-left transition-colors
+                            hover:bg-accent
+                            ${isActive
+                          ? 'border-primary bg-primary text-primary-foreground'
+                          : 'border-border bg-card'}
+                          `}
+                        >
+                          <span className={`
+                            font-mono text-[10px]
+                            ${isActive
+                          ? 'text-primary-foreground/70'
+                          : `text-primary`}
+                          `}
+                          >
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          <span className="text-xs/4 font-semibold">{level.title}</span>
+                          <ChevronRight className="ml-auto size-4 shrink-0" />
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <div className="
+                    flex min-h-0 flex-col justify-between border border-border
+                    bg-card p-5
+                  "
+                  >
+                    <div>
+                      <div className="
+                        flex items-center gap-2 text-xs font-semibold
+                        text-primary uppercase
+                      "
+                      >
+                        <Layers3 className="size-4" />
+                        Selected layer
+                      </div>
+                      <h3 className="
+                        mt-4 text-2xl/8 font-semibold
+                        xl:text-3xl/9
+                      "
+                      >
+                        {activeBlueprint.title}
+                      </h3>
+                      <p className="mt-3 text-sm/6 text-muted-foreground">
+                        {activeBlueprint.prompt}
+                      </p>
+                    </div>
+                    <div className="
+                      mt-5 border-l-4 border-primary bg-background p-4
+                    "
+                    >
+                      <div className="
+                        text-xs font-semibold text-muted-foreground uppercase
+                      "
+                      >
+                        Cleanroom example
+                      </div>
+                      <p className="mt-2 text-base/6 font-semibold">
+                        {activeBlueprint.example}
+                      </p>
+                    </div>
+                    <div className="
+                      mt-5 flex items-center gap-3 text-xs font-medium
+                      text-muted-foreground
+                    "
+                    >
+                      <BriefcaseBusiness className="size-4 text-primary" />
+                      Every layer traces back to the work.
+                    </div>
+                  </div>
+                </div>
+              )
+            : (
+                <div className="
+                  mt-6 flex min-h-0 flex-1 flex-col justify-center border-y
+                  border-border py-6
+                "
+                >
+                  <div className="
+                    grid items-center gap-5
+                    md:grid-cols-[0.8fr_1.2fr]
+                  "
+                  >
+                    <div>
+                      <div className="
+                        flex size-14 items-center justify-center bg-primary
+                        text-primary-foreground
+                      "
+                      >
+                        <ActiveStageIcon className="size-7" />
+                      </div>
+                      <p className="
+                        mt-5 max-w-md text-2xl/8 font-semibold
+                        lg:text-3xl/10
+                      "
+                      >
+                        {activeStage.purpose}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {stageVisuals[activeStage.id].map((item, index) => (
+                        <div key={item} className="contents">
+                          <div className="
+                            flex min-h-24 flex-1 items-center justify-center
+                            border border-border bg-card p-3 text-center
+                            text-sm/5 font-semibold
+                          "
+                          >
+                            {item}
+                          </div>
+                          {index < stageVisuals[activeStage.id].length - 1 && (
+                            <ArrowRight className="size-4 shrink-0 text-primary" />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+        </section>
+
+        <aside className="
+          flex min-h-0 flex-col overflow-hidden bg-card p-5
+          lg:p-6
+        "
+        >
+          <div className="border-l-4 border-primary pl-4">
+            <div className="
+              text-xs font-semibold text-muted-foreground uppercase
+            "
+            >
+              Purpose
+            </div>
+            <p className="mt-1 text-base/6 font-semibold">{activeStage.purpose}</p>
+          </div>
+          <div className="
+            mt-4 grid min-h-0 flex-1 grid-cols-2 content-start gap-x-5 gap-y-4
+          "
+          >
+            <div className="col-span-2">
+              <DetailList
+                icon={ClipboardList}
+                label="Key questions"
+                items={activeStage.keyQuestions}
+              />
+            </div>
+            {activeStage.participants && (
+              <DetailList
+                icon={Users}
+                label="Participants"
+                items={activeStage.participants}
+              />
+            )}
+            <DetailList
+              icon={CheckCircle2}
+              label="Deliverables"
+              items={activeStage.deliverables}
+            />
+          </div>
+          <StageVisual stage={activeStage} />
+        </aside>
+      </main>
     </div>
   );
 };
