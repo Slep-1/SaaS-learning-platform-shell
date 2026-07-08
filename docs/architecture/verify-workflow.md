@@ -1,6 +1,6 @@
 # Verify Workflow
 
-Verify records whether a learner demonstrated a practical skill. It is separate from viewing content or passing a knowledge check.
+Verify records whether a learner demonstrated a practical skill. It provides capability evidence for myLearning's Workforce Readiness outcome and remains separate from viewing content or passing a knowledge check.
 
 ## Current State
 
@@ -16,6 +16,7 @@ Verify records whether a learner demonstrated a practical skill. It is separate 
 - Scope every request and decision to an organization and learner, with actor and timestamps recorded.
 - Surface the learner's next outstanding verification on Today's Priorities and a review queue for Coordinators.
 - Keep verification evidence concise in the first version: optional note plus referenced capability; add files or media only when required.
+- Feed verified evidence into capability measurement without treating a single sign-off as permanent readiness.
 
 ## Open Questions
 

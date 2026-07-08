@@ -1,6 +1,6 @@
 # Data Model
 
-The data model should remain small, organization-scoped, and centered on evidence of capability rather than course administration.
+The data model should remain small, organization-scoped, and centered on how myLearning builds, verifies, reinforces, and measures capability. Workforce Readiness should be derived from evidence, not stored as an unsupported label.
 
 ## Current State
 
@@ -15,6 +15,7 @@ The data model should remain small, organization-scoped, and centered on evidenc
 - Represent skill verification separately from content completion, with organization, learner, referenced capability, verifier, method, status, and timestamps.
 - Store immutable learning events separately from assignment summary fields when the xAPI strategy is implemented.
 - Treat assignment and verification records as workflow state; treat events as audit evidence.
+- Derive capability and readiness indicators from versioned rules over completion, verification, reinforcement, and recency evidence.
 - Preserve explicit organization ownership and indexes on every tenant-scoped aggregate.
 
 ## Open Questions
@@ -24,3 +25,4 @@ The data model should remain small, organization-scoped, and centered on evidenc
 - Should Update acknowledgements reuse assignments or have a distinct workflow?
 - Which user profile fields must be mirrored locally if Clerk data becomes unavailable or changes?
 - What retention and deletion rules apply to learning and verification evidence?
+- Which readiness indicators should be computed on demand, projected, or stored as historical snapshots?

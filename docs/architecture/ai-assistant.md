@@ -1,6 +1,6 @@
 # AI Assistant
 
-The first AI capability should answer operational questions from approved company knowledge. It should not behave as an unrestricted general-purpose chatbot.
+AI is native to the target platform architecture, but its first user-facing capability should be bounded: answer operational questions from approved company knowledge. It should reinforce capability, not behave as an unrestricted general-purpose chatbot.
 
 ## Current State
 
@@ -17,6 +17,7 @@ The first AI capability should answer operational questions from approved compan
 - Enforce organization filters before retrieval and again when resolving citations.
 - Decline unsupported questions rather than filling gaps from model knowledge or the public internet.
 - Add an in-card tutor and plain-English analytics only after trusted retrieval, verification, and event data exist.
+- Use AI to interpret readiness evidence only when results are traceable to source data and remain reviewable by people.
 
 ## Open Questions
 

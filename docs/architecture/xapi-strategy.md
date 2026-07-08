@@ -1,6 +1,6 @@
 # xAPI Strategy
 
-xAPI should provide a durable event vocabulary for learning evidence without forcing the first product versions to operate a full Learning Record Store.
+xAPI should provide a durable event vocabulary for how capability is built and reinforced. These events contribute evidence toward Workforce Readiness; activity volume alone does not measure readiness.
 
 ## Current State
 
@@ -16,6 +16,7 @@ xAPI should provide a durable event vocabulary for learning evidence without for
 - Store accepted events immutably, then project assignment progress from those events or update both in one controlled transaction.
 - Use stable application identifiers for activities and registrations; never trust learner or organization identity supplied by embedded content.
 - Keep an adapter boundary so events can later be forwarded to a conformant LRS or used by cmi5 imports.
+- Expose event data to capability measurement only through defined projections that distinguish activity, completion, verification, and readiness indicators.
 
 ## Open Questions
 

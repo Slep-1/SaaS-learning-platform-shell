@@ -1,6 +1,6 @@
 # Design Principles
 
-These principles guide product and technical decisions as myLearning evolves from its current Learn foundation into a broader capability platform.
+These principles guide myLearning as an AI-Native Workforce Capability Platform whose intended outcome is Workforce Readiness.
 
 ## Current State
 
@@ -19,6 +19,8 @@ These principles guide product and technical decisions as myLearning evolves fro
 6. **Small workflows first.** Ship the narrowest complete workflow before adding automation, imports, or advanced analytics.
 7. **Accessible and mobile-first.** Keep core actions fast, readable, and usable on small screens.
 8. **Audit important decisions.** Preserve actors, timestamps, and evidence for progress, verification, and AI activity.
+9. **Readiness is the outcome.** Measure whether people can perform; do not use "readiness" as a vague software category.
+10. **AI is part of the architecture.** Use AI where it can retrieve, reinforce, or interpret trusted capability evidence, with bounded behavior and human accountability.
 
 ## Open Questions
 
