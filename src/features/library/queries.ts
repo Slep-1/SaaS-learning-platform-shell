@@ -1,5 +1,5 @@
 import type { OrgRole } from '@/types/Auth';
-import { and, eq } from 'drizzle-orm';
+import { and, asc, eq, isNull, sql } from 'drizzle-orm';
 import { db } from '@/libs/DB';
 import { lessonAssignmentSchema, lessonSchema } from '@/models/Schema';
 import { ORG_ROLE } from '@/types/Auth';
@@ -75,6 +75,46 @@ export type AssignmentRow = {
   midpointAt: Date | null;
   completedAt: Date | null;
 };
+
+export type LearnerPriorityAssignment = {
+  assignmentId: number;
+  lessonId: number;
+  lessonTitle: string;
+  lessonDescription: string;
+  dueDate: Date | null;
+  startedAt: Date | null;
+  midpointAt: Date | null;
+  completedAt: Date | null;
+  score: number | null;
+};
+
+export async function getLearnerPriorityAssignments(orgId: string, learnerUserId: string): Promise<LearnerPriorityAssignment[]> {
+  return db
+    .select({
+      assignmentId: lessonAssignmentSchema.id,
+      lessonId: lessonAssignmentSchema.lessonId,
+      lessonTitle: lessonSchema.title,
+      lessonDescription: lessonSchema.description,
+      dueDate: lessonAssignmentSchema.dueDate,
+      startedAt: lessonAssignmentSchema.startedAt,
+      midpointAt: lessonAssignmentSchema.midpointAt,
+      completedAt: lessonAssignmentSchema.completedAt,
+      score: lessonAssignmentSchema.score,
+    })
+    .from(lessonAssignmentSchema)
+    .innerJoin(lessonSchema, eq(lessonSchema.id, lessonAssignmentSchema.lessonId))
+    .where(and(
+      eq(lessonAssignmentSchema.orgId, orgId),
+      eq(lessonSchema.orgId, orgId),
+      eq(lessonAssignmentSchema.learnerUserId, learnerUserId),
+    ))
+    .orderBy(
+      asc(sql`case when ${lessonAssignmentSchema.completedAt} is null then 0 else 1 end`),
+      asc(isNull(lessonAssignmentSchema.dueDate)),
+      asc(lessonAssignmentSchema.dueDate),
+      asc(lessonAssignmentSchema.createdAt),
+    );
+}
 
 export async function getAssignmentsForOrg(orgId: string): Promise<AssignmentRow[]> {
   return db
